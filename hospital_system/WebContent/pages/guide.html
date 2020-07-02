@@ -1,0 +1,322 @@
+<!doctype html>
+<html>
+
+<head>
+    <title>公寓村医院交通指引</title>
+    <meta name="Keywords" content="公寓村医院,交通指引" />
+    <meta name="Description" content="" />
+    <!--PubLog:IsIncludeFile-->
+    <meta charset="utf-8">
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <link rel="stylesheet" href="../html/css/nfyy_base.css">
+    <link rel="stylesheet" href="../html/css/nfyy_other.css">
+    <script type="text/javascript" src="../html/js/jquery.min.js"></script>
+    <base target="_blank" />
+
+    <link rel="stylesheet" href="../html/css/nfyy_news.css?v=20140818000702" />
+</head>
+
+<body>
+    <div class="nav nav_k">
+        <ul class="nav-bar clearfix">
+            <li class="nav-item first">
+                <div class="nav-item-tit"><a href="/"></a></div>
+            </li>
+            <li class="nav-item home">
+                <div class="nav-item-tit" id="nav_home"><a href="../index.html" target="_self">首页 </a></div>
+            </li>
+            <li class="nav-item">
+                <div class="nav-item-tit" id="nav_yyjs"><a href="http://localhost:8888/hospital_system/introduction/introductionlist" target="_self">医院介绍</a></div>
+            </li>
+
+
+            </li>
+            
+            <li class="nav-item">
+                <div class="nav-item-tit" id="nav_xwzx"><a href="" target="_self">服务导航</a></div>
+                <ul class="nav-item-list">
+                   
+                    <li><a href="../desktop/login" target="_self">预约挂号</a></li>
+                    
+                    
+                </ul>
+            </li>
+            <li class="nav-item">
+                <div class="nav-item-tit" id="nav_nyxs"><a href="http://localhost:8888/hospital_system/mymk/Index.html" target="_self">名医名科</a></div>
+                
+            </li>
+            <li class="nav-item">
+                <div class="nav-item-tit" id="nav_xwzx"><a href="#" target="_self">新闻中心</a></div>
+                <ul class="nav-item-list">
+                    <!--  <li><a href="/xwzx/mzdt/simpleList.html" target="_self">门诊动态</a></li>-->
+
+                    <li><a href="../articlelistpage" target="_self">医院新闻</a></li>
+                </ul>
+            </li>
+            <li class="nav-item">
+                <div class="nav-item-tit" id="nav_nyxs"><a href="http://localhost:8888/hospital_system/pages/echarts/templates/main.html" target="_self">疫情专栏</a></div>
+                <ul class="nav-item-list">
+                    <li><a href="../pages/echarts/Echart.html">全国疫情图</a></li>
+                    <li><a href="../pages/echarts/hebei.html">河北省疫情图</a></li>
+                    <li><a href="../pages/echarts/hunan.html">湖南省疫情图</a></li>
+                </ul>
+            </li>
+            
+            
+
+        </ul>
+    </div>
+
+    <div class="header header_k clearfix">
+        
+    </div>
+    <div class="main">
+        <div class="web_mainbox">
+            <div class="web_left">
+
+                <!--art_left-->
+                <div class="art_box_c">
+
+                    <h1>公寓村医院交通指引</h1>
+                    <div class="remark">作者：kevin xiao　　2020-04-26  </div>
+
+                    <div class="art_con">
+                        <p>
+                            <div class="jtzy_box">
+                                <div style="width:825px;height:600px;" id="dituContent" class="dituContent"></div>
+                                <script type="text/javascript"
+                                    src="http://api.map.baidu.com/api?key=&v=1.1&services=true"></script>
+                                    <script type="text/javascript">
+                                        //创建和初始化地图函数：
+                                        function initMap(){
+                                            createMap();//创建地图
+                                            setMapEvent();//设置地图事件
+                                            addMapControl();//向地图添加控件
+                                            addMarker();//向地图中添加marker
+                                            addPolyline();//向地图中添加线
+                                            addRemark();//向地图中添加文字标注
+                                        }
+                                        
+                                        //创建地图函数：
+                                        function createMap(){
+                                            var map = new BMap.Map("dituContent");//在百度地图容器中创建一个地图
+                                            var point = new BMap.Point(118.174689,39.682344);//定义一个中心点坐标
+                                            map.centerAndZoom(point,18);//设定地图的中心点和坐标并将地图显示在地图容器中
+                                            window.map = map;//将map变量存储在全局
+                                        }
+                                        
+                                        //地图事件设置函数：
+                                        function setMapEvent(){
+                                            map.enableDragging();//启用地图拖拽事件，默认启用(可不写)
+                                            map.enableScrollWheelZoom();//启用地图滚轮放大缩小
+                                            map.enableDoubleClickZoom();//启用鼠标双击放大，默认启用(可不写)
+                                            map.enableKeyboard();//启用键盘上下左右键移动地图
+                                        }
+                                        
+                                        //地图控件添加函数：
+                                        function addMapControl(){
+                                            //向地图中添加缩放控件
+                                        var ctrl_nav = new BMap.NavigationControl({anchor:BMAP_ANCHOR_TOP_LEFT,type:BMAP_NAVIGATION_CONTROL_LARGE});
+                                        map.addControl(ctrl_nav);
+                                            //向地图中添加缩略图控件
+                                        var ctrl_ove = new BMap.OverviewMapControl({anchor:BMAP_ANCHOR_BOTTOM_RIGHT,isOpen:1});
+                                        map.addControl(ctrl_ove);
+                                            //向地图中添加比例尺控件
+                                        var ctrl_sca = new BMap.ScaleControl({anchor:BMAP_ANCHOR_BOTTOM_LEFT});
+                                        map.addControl(ctrl_sca);
+                                        }
+                                        
+                                        //标注点数组
+                                        var markerArr = [{title:"公寓村医院",content:"联系人：Kevin&nbsp;xiao<br/>地址：路北区大学西道159号",point:"118.174532|39.683045",isOpen:0,icon:{w:21,h:21,l:46,t:46,x:1,lb:10}}
+                                             ,{title:"正门",content:"我的备注",point:"118.174936|39.681692",isOpen:0,icon:{w:21,h:21,l:46,t:46,x:1,lb:10}}
+                                             ,{title:"东门",content:"华岩北路",point:"118.176068|39.684086",isOpen:0,icon:{w:21,h:21,l:46,t:46,x:1,lb:10}}
+                                             ,{title:"西门",content:"我的备注",point:"118.173526|39.683108",isOpen:0,icon:{w:21,h:21,l:46,t:46,x:1,lb:10}}
+                                             ];
+                                        //创建marker
+                                        function addMarker(){
+                                            for(var i=0;i<markerArr.length;i++){
+                                                var json = markerArr[i];
+                                                var p0 = json.point.split("|")[0];
+                                                var p1 = json.point.split("|")[1];
+                                                var point = new BMap.Point(p0,p1);
+                                                var iconImg = createIcon(json.icon);
+                                                var marker = new BMap.Marker(point,{icon:iconImg});
+                                                var iw = createInfoWindow(i);
+                                                var label = new BMap.Label(json.title,{"offset":new BMap.Size(json.icon.lb-json.icon.x+10,-20)});
+                                                marker.setLabel(label);
+                                                map.addOverlay(marker);
+                                                label.setStyle({
+                                                            borderColor:"#808080",
+                                                            color:"#333",
+                                                            cursor:"pointer"
+                                                });
+                                                
+                                                (function(){
+                                                    var index = i;
+                                                    var _iw = createInfoWindow(i);
+                                                    var _marker = marker;
+                                                    _marker.addEventListener("click",function(){
+                                                        this.openInfoWindow(_iw);
+                                                    });
+                                                    _iw.addEventListener("open",function(){
+                                                        _marker.getLabel().hide();
+                                                    })
+                                                    _iw.addEventListener("close",function(){
+                                                        _marker.getLabel().show();
+                                                    })
+                                                    label.addEventListener("click",function(){
+                                                        _marker.openInfoWindow(_iw);
+                                                    })
+                                                    if(!!json.isOpen){
+                                                        label.hide();
+                                                        _marker.openInfoWindow(_iw);
+                                                    }
+                                                })()
+                                            }
+                                        }
+                                        //创建InfoWindow
+                                        function createInfoWindow(i){
+                                            var json = markerArr[i];
+                                            var iw = new BMap.InfoWindow("<b class='iw_poi_title' title='" + json.title + "'>" + json.title + "</b><div class='iw_poi_content'>"+json.content+"</div>");
+                                            return iw;
+                                        }
+                                        //创建一个Icon
+                                        function createIcon(json){
+                                            var icon = new BMap.Icon("http://app.baidu.com/map/images/us_mk_icon.png", new BMap.Size(json.w,json.h),{imageOffset: new BMap.Size(-json.l,-json.t),infoWindowOffset:new BMap.Size(json.lb+5,1),offset:new BMap.Size(json.x,json.h)})
+                                            return icon;
+                                        }
+                                    //标注线数组
+                                        var plPoints = [{style:"solid",weight:4,color:"#f00",opacity:0.6,points:["118.172996|39.681608","118.17614|39.68165","118.176167|39.680921","118.176194|39.680442","118.176086|39.684114","118.176095|39.684107"]}
+                                             ];
+                                        //向地图中添加线函数
+                                        function addPolyline(){
+                                            for(var i=0;i<plPoints.length;i++){
+                                                var json = plPoints[i];
+                                                var points = [];
+                                                for(var j=0;j<json.points.length;j++){
+                                                    var p1 = json.points[j].split("|")[0];
+                                                    var p2 = json.points[j].split("|")[1];
+                                                    points.push(new BMap.Point(p1,p2));
+                                                }
+                                                var line = new BMap.Polyline(points,{strokeStyle:json.style,strokeWeight:json.weight,strokeColor:json.color,strokeOpacity:json.opacity});
+                                                map.addOverlay(line);
+                                            }
+                                        }
+                                    //文字标注数组
+                                        var lbPoints = [{point:"118.173103|39.681726",content:"21路&nbsp;22路&nbsp;26路车可以直达"}
+                                             ];
+                                        //向地图中添加文字标注函数
+                                        function addRemark(){
+                                            for(var i=0;i<lbPoints.length;i++){
+                                                var json = lbPoints[i];
+                                                var p1 = json.point.split("|")[0];
+                                                var p2 = json.point.split("|")[1];
+                                                var label = new BMap.Label("<div style='padding:2px;'>"+json.content+"</div>",{point:new BMap.Point(p1,p2),offset:new BMap.Size(3,-6)});
+                                                map.addOverlay(label);
+                                                label.setStyle({borderColor:"#999"});
+                                            }
+                                        }
+                                        
+                                        initMap();//创建和初始化地图
+                                    </script>
+                                
+                                <p><strong>公交线路</strong>
+                                    17  30  39  43  55  5  22　 26　 60　 66　　21  99
+                                    凤凰花卉专线1路 公交车到<span class="red">唐山学院站</span>下；或者选择坐车到远洋城，通过小黄 摩拜 街兔等代步工具到达</p>
+                            </div>
+                        </p>
+                    </div>
+                    <div class="share-wrap">
+                        <!--分享-->
+                        <div class="weibo_fx">
+                            <script type="text/javascript" src="../html/js/nfyy_share.js" charset="utf-8"></script>
+                            
+                            
+                            <script language="javascript" src="../html/js/ShareToWeiXin.js"></script>
+                            <script language="javascript">
+                                // var qrcode = new QRCode(document.getElementById("wx_Share_img"), {
+                                //     width: 160,
+                                //     height: 160
+                                // });
+                                // qrcode.makeCode(window.location.href);
+
+                                // $(function () {
+                                //     $(".art_weixin").hover(function () {
+                                //         $(this).addClass("art_weixin_hover");
+                                //     }, function () {
+                                //         $(this).removeClass("art_weixin_hover");
+                                //     });
+                                // });
+                            </script>
+                            <br class="clear" />
+                        </div>
+                        <!--分享 end-->
+                    </div>
+
+                </div>
+            </div>
+            <!--PubLog:IsIncludeFile-->
+
+            
+        </div>
+    </div>
+    <!--PubLog:IsIncludeFile-->
+    <div class="footer-wrap">
+        <div class="footer">
+            <div class="ft-copy fl">
+                <p class="yy-line"><i class="arrow"></i><span>预约咨询</span><b>020-61641888</b></p>
+                <p>地址：&nbsp;&nbsp;邮编：063000&nbsp;&nbsp;技术支持:<a style="color: #fff"
+                        href="#">计算机科学与技术</a></p>
+                <p>Copyright &copy; 2020康健服务管理平台版权所有&nbsp;&nbsp;</p>
+            </div>
+            
+            
+        </div>
+    </div>
+    <div class="right-tools">
+        
+    </div>
+
+    <script type="text/javascript" src="../html/js/Marquee.js"></script>
+    <script type="text/javascript" src="../html/js/jcarousellite.js"></script>
+    <script type="text/javascript" src="../html/js/common.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            var col = document.location.pathname.split('/')[1];
+            $('#topMainNav').find("li a").each(function () {
+
+                if (col == "search") {
+                    $("#nav_home").addClass('on');
+                    return false;
+                }
+                if ($(this).attr('href').indexOf(col) > 0) {
+                    $("#topMainNav").find('div').removeClass('on');
+                    $(this).parent('div').addClass('on');
+                    return false;
+                };
+            });
+
+            $("body a").click(function () {
+                var href = $(this).attr("href");
+                var host = window.location.host;
+                if (href.indexOf('http') != -1) {
+                    if (href.indexOf(host) == -1) {
+                        event.returnValue = confirm("您是否要离开本站点，跳转到其它页面吗？");
+                    }
+                }
+            });
+        });
+    </script>
+
+    
+    <div style="margin:0px auto; text-align:center;">
+        <script
+            type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://"); document.write(unescape("%3Cspan id='cnzz_stat_icon_1255838524'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s11.cnzz.com/z_stat.php%3Fid%3D1255838524%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script>
+    </div>
+    <script type="text/javascript">
+        var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+        document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3Fdf36900115c9078dccb665ac42a36e49' type='text/javascript'%3E%3C/script%3E"));
+    </script>
+</body>
+
+</html>

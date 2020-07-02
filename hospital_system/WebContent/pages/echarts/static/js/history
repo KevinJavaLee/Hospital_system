@@ -1,0 +1,3 @@
+{"date":"2020-01-23","suspectedNum":1072,"curesNum":34,"suspectedIncr":680,"confirmedNum":835,"deathsNum":25,"suspectedNumStr":"1072","curesRatio":0.040718563,"suspectedIncrStr":"680","asymptomaticNum":0,"deathsRatio":0.029940119,"asymptomaticIncr":0,"treatingNum":776,"inboundNum":0}
+com.mysql.cj.jdbc.ClientPreparedStatement: insert into history (date,suspectedNum,curesNum,suspectedIncr,confirmedNum,deathsNum,suspectedNumStr,curesRatio,suspectedIncrStr,asymptomaticNum,deathsRatio,asymptomaticIncr,treatingNum,inboundNum) values ('2020-01-22 16:00:00.0',1072,34,680,835,25,1072,0.040718563,680,0,0.029940119,0,776,0)
+1

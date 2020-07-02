@@ -1,0 +1,928 @@
+// JavaScript Document
+$(document).ready(function(){
+	/***********搜索框下面的轮转公告***********/
+	var index = 0,
+		sheid = $(".seek_chunk div").height(),
+		len = $(".seek_chunk div li").length;
+	$('.seek_chunk div').hover(function(){
+					clearInterval(picTimer);
+				},function(){
+					picTimer = setInterval(function() {
+					showli(index);
+					index++;
+					if (index == len) {
+						index = 0;
+						}
+					},5000);
+				}).trigger("mouseleave");
+	function showli(index){
+					var lenum = -sheid * index;
+					$(".seek_chunk ul").stop(true,false).animate({top : lenum},300);
+				}
+	/***********首页轮播图***********/
+	var	swids = $(".box_left_lun").width(),
+		lens = $(".box_left_lun_big li").length,
+		wuls = lens * swids,
+		indexs = 0,
+		picTimer2;
+	$(".box_left_lun_big").width(wuls)
+	$(".box_left_lun_small li").mouseover(function(){
+					indexs = $(this).index();
+					showlis(indexs);	
+				}).eq(0).trigger("mouseover");
+
+				$('.box_left_lun').hover(function(){
+					clearInterval(picTimers);
+					$(".box_left_lun i").show();
+				},function(){
+					$(".box_left_lun i").hide();
+					picTimers = setInterval(function() {
+					showlis(indexs);
+					indexs++;
+					if (indexs == lens) {
+						indexs = 0;
+						}
+					},5000);
+				}).trigger("mouseleave");
+	$(".box_left_lun_left").click(function(){
+		if(indexs<=0){
+			indexs = lens
+			}
+		indexs--;
+		showlis(indexs);
+		})
+	$(".box_left_lun_right").click(function(){		
+		indexs++;		
+		if(indexs == lens){
+			indexs = 0;
+			}
+		showlis(indexs);
+		})
+				function showlis(indexs){
+					var lenums = -swids * indexs;
+					$(".box_left_lun_big").stop(true,false).animate({left : lenums},300);
+					$(".box_left_lun_small li").removeClass("on").eq(indexs).addClass("on");
+					$('.box_left_lun p a').eq(indexs).show().siblings("a").hide();
+				}
+	/***********专家名医***********/
+	var expertliw = $(".box_left_expert li").width()+20,
+		expertlis = $(".box_left_expert li").length,
+		expertliindex = 0;
+		expertulw = expertliw * expertlis;
+	
+	$(".box_left_expert ul").width(expertulw)
+	/******专家右按钮******/
+	$(".expert_right").click(function(){
+		if(expertliindex < expertlis-3){
+			expertliindex++;
+			expertle = -expertliindex*expertliw;
+			$(".box_left_expert ul").stop(true,false).animate({left : expertle},300);
+			
+			if(expertliindex > 0){
+			$(".expert_left").css("background","url(/html/images/expert_left_01.jpg) no-repeat")
+			}
+			
+			if(expertliindex == expertlis-3){
+				$(this).css("background","url(/html/images/expert_right_02.png) no-repeat")
+				}
+			return expertliindex;
+			}
+		})
+	/******专家左按钮******/
+	$(".expert_left").click(function(){
+		if(expertliindex > 0){
+			expertliindex--;
+			expertle = -expertliindex*expertliw;
+			$(".box_left_expert ul").stop(true,false).animate({left : expertle},300);
+			
+			if(expertliindex < expertlis-3){
+			$(".expert_right").css("background","url(/html/images/expert_right_01.png) no-repeat")
+			}
+			if(expertliindex == 0){
+				$(this).css("background","url(/html/images/expert_left_02.jpg) no-repeat")
+				}
+			return expertliindex;
+			}
+		})
+
+	/***********医院新闻与媒体报道***********/
+	$(".box_right_news p a").hover(function(){
+		var newsa = $(this).index();
+		$(this).addClass("on").siblings("a").removeClass("on");
+		$(".box_right_news ul").eq(newsa).show().siblings("ul").hide();
+		})
+	/***********右边简介图***********/
+	var synw = $(".box_right_synopsis").width(),
+		syns = $(".box_right_synopsis li").length,
+		synl = 0;
+		$(".box_right_synopsis ul").width(synw * syns);
+	/*******简介图右边按钮******/
+	$(".box_right_synopsis_right").click(function(){
+			synl++;
+			if(synl == syns){
+				synl = 0;
+			}
+			synls = -synw*synl;
+			$(".box_right_synopsis ul").stop(true,false).animate({left : synls},300);
+		})
+	/*******简介图左边按钮******/
+	$(".box_right_synopsis_left").click(function(){
+			synl--;
+			if(synl == -1){
+				synl = syns - 1;
+			}
+			synls = -synw*synl;
+			$(".box_right_synopsis ul").stop(true,false).animate({left : synls},300);
+		})
+	/***********门诊动态***********/
+	var dyl = 0,
+		dyw = $(".box_right_dynamic div").height(),
+		dywlen = $(".box_right_dynamic .box_right_dynamic_li_big").length;
+		$(".box_right_dynamic_ul").height(dyw * dyw)
+		/***********门诊动态下按钮***********/
+	$(".box_right_dynamic_bottom").click(function(){
+		if(dyl < dywlen-1){
+			dyl++;
+			dyltop = -dyw * dyl;
+			$(".box_right_dynamic_ul").stop(true,false).animate({top : dyltop},300);
+			if(dyl == dywlen-1){
+				$(this).css("background","url(/html/images/box_right_dynamic_bottom_02.jpg) no-repeat")
+				}
+			if(dyl > 0){
+				$(".box_right_dynamic_top").css("background","url(/html/images/box_right_dynamic_top_01.jpg) no-repeat")
+				}
+			}
+			})
+		/***********门诊动态上按钮***********/
+	$(".box_right_dynamic_top").click(function(){
+		if(dyl > 0){
+			dyl--;
+			dyltop = -dyw * dyl;
+			$(".box_right_dynamic_ul").stop(true,false).animate({top : dyltop},300);
+			if(dyl == 0){
+				$(this).css("background","url(/html/images/box_right_dynamic_top_02.jpg) no-repeat")
+				}
+			}
+			if(dyl < dywlen-1){
+				$(".box_right_dynamic_bottom").css("background","url(/html/images/box_right_dynamic_bottom_01.jpg) no-repeat")
+				}
+			})
+	
+	/***************导航栏***************/
+	$(".nav_small_chunk li").hover(function(){
+		$(this).addClass("on_l").siblings().removeClass("on_l");
+		$(this).find("ul").stop(true,false).slideDown(300)
+		},function(){
+			$(this).removeClass("on_l");
+		$(this).find("ul").stop(true,false).slideUp(300)
+			})
+	/***********医院介绍导航栏**********/
+	$(".top_nav_small li").hover(function(){
+		$(this).addClass("on_l").siblings().removeClass("on_l");
+		$(this).find("ul").stop(true,false).slideDown(300)
+		},function(){
+			$(this).removeClass("on_l");
+		$(this).find("ul").stop(true,false).slideUp(300)
+			})
+	/**********院长**********/
+	$(".box_right .dean_wp b").click(function(){
+		if($(this).parent().prev('div').is(":visible")){
+			$(this).parent().prev('div').slideUp(300);
+			$(this).parent().addClass("on");
+			$(this).html("查看详细")
+			}else{
+				$(this).parent().prev('div').slideDown(300);
+				$(this).parent().removeClass("on")
+				$(this).html("收起详细")
+				}
+		
+		})
+	/***********图片频道***********/
+	var   ulliw = $(".picture_one li").width()+20,
+		 ullis = $(".picture_one li").length,
+		 ulindex = 0;
+		 ululw = ulliw * ullis;
+	$(".picture_one ul").width(ululw)
+	/******图片右按钮******/
+	$(".picture_one .picture_right").click(function(){
+		if(ulindex < ullis-3){
+			ulindex++;
+			ulle = -ulindex*ulliw;
+			$(".picture_one ul").stop(true,false).animate({left : ulle},300);
+			
+			if(ulindex > 0){
+			$(".picture_one .picture_left").css("background","url(/html/images/expert_left_01.jpg) no-repeat")
+			}
+			
+			if(ulindex == ullis-3){
+				$(this).css("background","url(/html/images/expert_right_02.png) no-repeat")
+				}
+			return ulindex;
+			}
+		})
+	/******图片左按钮******/
+	$(".picture_one .picture_left").click(function(){
+		if(ulindex > 0){
+			ulindex--;
+			ulle = -ulindex*ulliw;
+			$(".picture_one ul").stop(true,false).animate({left : ulle},300);
+			
+			if(ulindex < ullis-3){
+			$(".picture_one .picture_right").css("background","url(/html/images/expert_right_01.png) no-repeat")
+			}
+			if(ulindex == 0){
+				$(this).css("background","url(/html/images/expert_left_02.jpg) no-repeat")
+				}
+			return ulindex;
+			}
+		})
+	/**********视频频道********/
+	var   ulliws = $(".picture_two li").width()+20,
+		 ulliss = $(".picture_two li").length,
+		 ulindexs = 0;
+		 ululws = ulliws * ulliss;
+	$(".picture_two ul").width(ululws)
+	/******视频右按钮******/
+	$(".picture_two .picture_right").click(function(){
+		if(ulindexs < ulliss-3){
+			ulindexs++;
+			ulles = -ulindexs * ulliws;
+			$(".picture_two ul").stop(true,false).animate({left : ulles},300);
+			
+			if(ulindexs > 0){
+			$(".picture_two .picture_left").css("background","url(/html/images/expert_left_01.jpg) no-repeat")
+			}
+			
+			if(ulindexs == ulliss-3){
+				$(this).css("background","url(/html/images/expert_right_02.png) no-repeat")
+				}
+			return ulindexs;
+			}
+		})
+	/******视频左按钮******/
+	$(".picture_two .picture_left").click(function(){
+		if(ulindexs > 0){
+			ulindexs--;
+			ulles = -ulindexs * ulliws;
+			$(".picture_two ul").stop(true,false).animate({left : ulles},300);
+			
+			if(ulindexs < ulliss-3){
+			$(".picture_two .picture_right").css("background","url(/html/images/expert_right_01.png) no-repeat")
+			}
+			if(ulindexs == 0){
+				$(this).css("background","url(/html/images/expert_left_02.jpg) no-repeat")
+				}
+			return ulindexs;
+			}
+		})
+	/***********列表无图片***********/
+	$(".box_left_list_content li").each(function(){
+		var listsrc = $(this).find("img").attr("src");
+		if(listsrc == ""){
+		$(this).addClass("moimg")
+		}
+		})
+	/***********右边小轮播图***********/
+	var	swidsr = $(".box_right_lun li").width(),
+		lensr = $(".box_right_lun_da li").length,
+		wulsr = lensr * swidsr,
+		indexsr = 0,
+		picTimer2r;
+	$(".box_right_lun_da").width(wulsr)
+	$(".box_right_lun_small li").mouseover(function(){
+					indexsr = $(this).index();
+					showlisr(indexsr);	
+				}).eq(0).trigger("mouseover");
+
+				$('.box_right_lun').hover(function(){
+					clearInterval(picTimer2r);
+				},function(){
+					picTimer2r = setInterval(function() {
+					showlisr(indexsr);
+					indexsr++;
+					if (indexsr == lensr) {
+						indexsr = 0;
+						}
+					},5000);
+				}).trigger("mouseleave");
+
+				function showlisr(indexsr){
+					var lenumsr = -swidsr * indexsr;
+					$(".box_right_lun_da").stop(true,false).animate({left : lenumsr},300);
+					$(".box_right_lun_small li").removeClass("on").eq(indexsr).addClass("on");
+				}
+	/***********底部广告轮播**********/
+	var	swidsd = $(".box_left_article_lun").width(),
+		lensd = $(".box_left_article_lun_big li").length,
+		wulsd = lensd * swidsd,
+		indexsd = 0,
+		picTimer2d;
+	$(".box_left_article_lun_big").width(wulsd)
+	$(".box_left_article_lun_small li").mouseover(function(){
+					indexsd = $(this).index();
+					showlisd(indexsd);	
+				}).eq(0).trigger("mouseover");
+
+				$('.box_left_article_lun').hover(function(){
+					clearInterval(picTimer2d);
+				},function(){
+					picTimer2d = setInterval(function() {
+					showlisd(indexsd);
+					indexsd++;
+					if (indexsd == lensd) {
+						indexsd = 0;
+						}
+
+					},5000);
+				}).trigger("mouseleave");
+
+				function showlisd(indexsd){
+					var lenumsd = -swidsd * indexsd;
+					$(".box_left_article_lun_big").stop(true,false).animate({left : lenumsd},300);
+					$(".box_left_article_lun_small li").removeClass("on").eq(indexsd).addClass("on");
+				}
+	/***********列表切换***********/
+	$(".box_left_list_top li").hover(function(){
+		var listind = $(this).index();
+		$(this).addClass("on").siblings().removeClass("on");
+		$(".box_left_list_content ul").eq(listind).show().siblings("ul").hide();
+		$(".box_left_list_content .box_left_list_more").eq(listind).css("display","block").siblings(".box_left_list_more").hide();
+		})
+	/***********图片频道轮播*********/
+	var	swidsg = $(".box_top_lun").width(),
+		lensg = $(".box_top_lun_big li").length,
+		wulsg = lensg * swidsg,
+		indexsg = 0,
+		picTimer2g;
+	$(".box_top_lun_big").width(wulsg)
+	$(".box_top_lun_small li").mouseover(function(){
+					indexsg = $(this).index();
+					showlisg(indexsg);	
+				}).eq(0).trigger("mouseover");
+
+				$('.box_top_lun').hover(function(){
+					clearInterval(picTimer2g);
+				},function(){
+					picTimer2g = setInterval(function() {
+					showlisg(indexsg);
+					indexsg++;
+					if (indexsg == lensg) {
+						indexsg = 0;
+						}
+					},5000);
+				}).trigger("mouseleave");
+
+				function showlisg(indexsg){
+					var lenumsg = -swidsg * indexsg;
+					$(".box_top_lun_big").stop(true,false).animate({left : lenumsg},300);
+					$(".box_top_lun_small li").removeClass("on").eq(indexsg).addClass("on");
+					$(".box_top_lun p").eq(indexsg).show().siblings("p").hide();
+				}
+	
+	/************家园***************/	
+	var	swysg = $(".box_left_teaching_lun").width(),
+		leysg = $(".box_left_teaching_lun_big li").length,
+		wuysg = leysg * swysg,
+		indyxsg = 0,
+		picTymer2g;
+	$(".box_left_teaching_lun_big").width(wuysg)
+	$(".box_left_teaching_lun_small li").mouseover(function(){
+					indyxsg = $(this).index();
+					showyisg(indyxsg);	
+				}).eq(0).trigger("mouseover");
+
+				$('.box_left_teaching_lun').hover(function(){
+					clearInterval(picTymer2g);
+				},function(){
+					picTymer2g = setInterval(function() {
+					showyisg(indyxsg);
+					indyxsg++;
+					if (indyxsg == leysg) {
+						indyxsg = 0;
+						}
+					},5000);
+				}).trigger("mouseleave");
+
+				function showyisg(indyxsg){
+					var lenuysg = -swysg * indyxsg;
+					$(".box_left_teaching_lun_big").stop(true,false).animate({left : lenuysg},300);
+					$(".box_left_teaching_lun_small li").removeClass("on").eq(indyxsg).addClass("on");
+					$(".box_left_teaching_lun div").eq(indyxsg).show().siblings("div").hide();
+				}
+		/************家园22***************/	
+	var	swqysg = $(".box_left_teaching_b_lun").width(),
+		leqysg = $(".box_left_teaching_b_lun_big li").length,
+		wuqysg = leqysg * swqysg,
+		indqyxsg = 0,
+		picTqymer2g;
+	$(".box_left_teaching_b_lun_big").width(wuqysg)
+	$(".box_left_teaching_b_lun_small li").mouseover(function(){
+					indqyxsg = $(this).index();
+					showqyisg(indqyxsg);	
+				}).eq(0).trigger("mouseover");
+
+				$('.box_left_teaching_b_lun').hover(function(){
+					clearInterval(picTqymer2g);
+				},function(){
+					picTqymer2g = setInterval(function() {
+					showqyisg(indqyxsg);
+					indqyxsg++;
+					if (indqyxsg == leqysg) {
+						indqyxsg = 0;
+						}
+					},5000);
+				}).trigger("mouseleave");
+
+				function showqyisg(indqyxsg){
+					var lenuqysg = -swqysg * indqyxsg;
+					$(".box_left_teaching_b_lun_big").stop(true,false).animate({left : lenuqysg},300);
+					$(".box_left_teaching_b_lun_small li").removeClass("on").eq(indqyxsg).addClass("on");
+					$(".box_left_teaching_b_lun p").eq(indqyxsg).show().siblings("p").hide();
+				}
+		/************家园33***************/	
+	var	swqysga = $(".box_left_teaching_c_lun").width(),
+		leqysga = $(".box_left_teaching_c_lun_big li").length,
+		wuqysga = leqysga * swqysga,
+		indqyxsga = 0,
+		picTqymer2ga;
+	$(".box_left_teaching_c_lun_big").width(wuqysga)
+	$(".box_left_teaching_c_lun_small li").mouseover(function(){
+					indqyxsga = $(this).index();
+					showqyisga(indqyxsga);	
+				}).eq(0).trigger("mouseover");
+
+				$('.box_left_teaching_c_lun').hover(function(){
+					clearInterval(picTqymer2ga);
+				},function(){
+					picTqymer2ga = setInterval(function() {
+					showqyisga(indqyxsga);
+					indqyxsga++;
+					if (indqyxsga == leqysga) {
+						indqyxsga = 0;
+						}
+					},5000);
+				}).trigger("mouseleave");
+
+				function showqyisga(indqyxsga){
+					var lenuqysga = -swqysga * indqyxsga;
+					$(".box_left_teaching_c_lun_big").stop(true,false).animate({left : lenuqysga},300);
+					$(".box_left_teaching_c_lun_small li").removeClass("on").eq(indqyxsga).addClass("on");
+					$(".box_left_teaching_c_lun p").eq(indqyxsga).show().siblings("p").hide();
+				}
+	/************jk1***************/	
+	var	swwsg = $(".Health_lun_one").width(),
+		lewsg = $(".Health_lun_one .box_left_Health_lun_big li").length,
+		wuwsg = lewsg * swwsg,
+		indwxsg = 0,
+		picTwmer2g;
+	$(".Health_lun_one .box_left_Health_lun_big").width(wuwsg)
+	$(".Health_lun_one .box_left_Health_lun_small li").mouseover(function(){
+					indwxsg = $(this).index();
+					showwisg(indwxsg);	
+				}).eq(0).trigger("mouseover");
+
+				$('.Health_lun_one').hover(function(){
+					clearInterval(picTwmer2g);
+				},function(){
+					picTwmer2g = setInterval(function() {
+					showwisg(indwxsg);
+					indwxsg++;
+					if (indwxsg == lewsg) {
+						indwxsg = 0;
+						}
+					},5000);
+				}).trigger("mouseleave");
+
+				function showwisg(indqyxsg){
+					var lenuwsg = -swwsg * indwxsg;
+					$(".Health_lun_one .box_left_Health_lun_big").stop(true,false).animate({left : lenuwsg},300);
+					$(".Health_lun_one .box_left_Health_lun_small li").removeClass("on").eq(indwxsg).addClass("on");
+					$(".Health_lun_one p").eq(indwxsg).show().siblings("p").hide();
+				}
+		/************jk222***************/	
+	var	sw2sg = $(".Health_lun_two").width(),
+		le2sg = $(".Health_lun_two .box_left_Health_lun_big li").length,
+		wu2sg = le2sg * sw2sg,
+		ind2xsg = 0,
+		picT2mer2g;
+	$(".Health_lun_two .box_left_Health_lun_big").width(wu2sg)
+	$(".Health_lun_two .box_left_Health_lun_small li").mouseover(function(){
+					ind2xsg = $(this).index();
+					sho2isg(ind2xsg);	
+				}).eq(0).trigger("mouseover");
+
+				$('.Health_lun_two').hover(function(){
+					clearInterval(picT2mer2g);
+				},function(){
+					picT2mer2g = setInterval(function() {
+					sho2isg(ind2xsg);
+					ind2xsg++;
+					if (ind2xsg == le2sg) {
+						ind2xsg = 0;
+						}
+					},5000);
+				}).trigger("mouseleave");
+
+				function sho2isg(ind2xsg){
+					var lenu2sg = -sw2sg * ind2xsg;
+					$(".Health_lun_two .box_left_Health_lun_big").stop(true,false).animate({left : lenu2sg},300);
+					$(".Health_lun_two .box_left_Health_lun_small li").removeClass("on").eq(ind2xsg).addClass("on");
+					$(".Health_lun_two p").eq(ind2xsg).show().siblings("p").hide();
+				}
+		
+		
+		
+		
+	
+	/***********论坛轮播图***********/
+	var	swidsrtt = $(".csco_lun").height(),
+		lensrtt = $(".csco_lun_big li").length,
+		wulsrtt = lensrtt * swidsrtt,
+		indexsrtt = 0,
+		picTimer2rtt;
+	$(".csco_lun_big").height(wulsrtt)
+	$(".csco_lun_small li").mouseover(function(){
+					indexsrtt = $(this).index();
+					showlisrtt(indexsrtt);	
+				}).eq(0).trigger("mouseover");
+
+				$('.csco_lun').hover(function(){
+					clearInterval(picTimer2rtt);
+				},function(){
+					picTimer2rtt = setInterval(function() {
+					showlisrtt(indexsrtt);
+					indexsrtt++;
+					if (indexsrtt == lensrtt) {
+						indexsrtt = 0;
+						}
+					},5000);
+				}).trigger("mouseleave");
+
+				function showlisrtt(indexsrtt){
+					var lenumsrtt = -swidsrtt * indexsrtt;
+					$(".csco_lun_big").stop(true,false).animate({top : lenumsrtt},300);
+					$(".csco_lun_small li").removeClass("on").eq(indexsrtt).addClass("on");
+				}
+	/***********论坛页下方***********/
+	var   ulwq = $(".box_csco_lung li").width()+24,
+		 ullwq = $(".box_csco_lung li").length,
+		 ulindwq = 0;
+		 uluwq = ullwq * ulwq;
+	$(".box_csco_lung ul").width(uluwq)
+	/******论坛下方右按钮******/
+	$(".csco_right").click(function(){
+		
+		if(ulindwq < ullwq-4){
+			ulindwq++;
+			ullwwq = -ulindwq *ulwq;
+			$(".box_csco_lung ul").stop(true,false).animate({left : ullwwq},300);
+			
+			if(ulindwq > 0){
+			$(".csco_left").css("background","url(/html/images/expert_left_01.jpg) no-repeat")
+			}
+			
+			if(ulindwq == ullwq-4){
+				$(this).css("background","url(/html/images/expert_right_02.png) no-repeat")
+				}
+			}
+		})
+	/******论坛下方左按钮******/
+	$(".csco_left").click(function(){
+		
+		if(ulindwq > 0){
+			ulindwq--;
+			ullwwq = -ulindwq*ulwq;
+			$(".box_csco_lung ul").stop(true,false).animate({left : ullwwq},300);
+			
+			if(ulindwq < ullwq-4){
+			$(".csco_right").css("background","url(/html/images/expert_right_01.png) no-repeat")
+			}
+			if(ulindwq == 0){
+				$(this).css("background","url(/html/images/expert_left_02.jpg) no-repeat")
+				}
+			}
+		})
+	/**********医院介绍--人才招聘***************/
+	$(".box_right_recruitment em").hover(function(){
+		$(this).find('ul').stop(true,false).slideDown(300)
+		$(".box_right_recruitment em li").click(function(){
+			var lit = $(this).html();
+			$(this).parent().siblings().html(lit)
+			$(this).parent().hide();
+			})
+		},function(){
+			$(this).find('ul').stop(true,false).slideUp(300)
+			})
+	$(".box_right_recruitment .wenb").focus(function(){
+		if($(this).val()=='关键词'){
+			$(this).val(""); 
+			}
+		})
+	$(".box_right_recruitment .wenb").blur(function(){
+		if($(this).val()==''){
+			$(this).val("关键词"); 
+			}
+		})
+		
+		
+	/*******************************医院历史***********************************/
+		
+		var lssl = $(".box_right_history_top li").length,
+		historyw = $(".box_right_history_top").width(),
+		lsliw = $(".box_right_history_top li").width()+2,
+		lsin = 0 ,
+		sd = lssl/8,
+		lileft = lsin * historyw;
+		ulwidt = lssl * lsliw + 30;
+		$(".box_right_history_top ul").width(ulwidt)
+		$(".box_right_history_top li").eq(lsin).addClass("on")
+		$(".history_top_right").click(function(){
+			if(lsin < sd - 1){
+				lsin++;
+				hisshow(lsin)
+				if(lsin = sd - 1){
+					$(this).css("background-color","#ccc")
+					}
+			}
+			})
+			
+		$(".history_top_left").click(function(){
+			if(lsin > 0){
+				lsin--;
+				hisshow(lsin)
+				}
+		})
+		
+		function hisshow(lsin){
+						var lileft = -historyw * lsin;
+						if(lileft + (ulwidt) < historyw){
+							lileft = -(lileft + ulwidt)
+							}
+						if(lileft > 0){
+							lileft = 0;
+							}
+						$(".box_right_history_top ul").stop(true,false).animate({left : lileft},300);
+					}	
+	
+	$(".box_right_history_top li").click(function(){
+		var dqindex = $(this).index();
+		$(this).addClass("on").siblings().removeClass("on");
+		$(".box_right_history_m").eq(dqindex).show().siblings(".box_right_history_m").hide();
+		})
+	
+	/********挂号预约**********/
+	$(".guahao_box_l form em").hover(function(){
+		$(this).find('ul').stop(true,false).slideDown(300)
+		$(".guahao_box_l em li").click(function(){
+			var lit = $(this).html();
+			$(this).parent().siblings().html(lit)
+			$(this).parent().hide();
+			})
+		},function(){
+			$(this).find('ul').stop(true,false).slideUp(300)
+			})
+	
+	
+	
+	var tzli = $(".guahao_box_r_gg li").length,
+		tzdh = $(".guahao_box_r_gg").height(),
+		tzlih = $(".guahao_box_r_gg li").height(),
+		tzin = 0 ,
+		tzsd = tzli/5,
+		tztop = tzin * tzdh,
+		tzulh = tzli * tzlih ;
+		$(".guahao_box_r_gg ul").height(tzulh)
+		$(".guahao_box_r .box_right_dynamic_bottom").click(function(){
+			if(tzin < tzsd - 1){
+				tzin++;
+				tzshow(tzin)
+				
+			}
+			})
+			
+		$(".guahao_box_r .box_right_dynamic_top").click(function(){
+			if(tzin > 0){
+				tzin--;
+				tzshow(tzin)
+				}
+		})
+		
+		function tzshow(tzin){
+						var tztop = -tzin * tzdh;
+						if(tztop + tzulh < tzdh){
+							tztop = -(tztop + tzulh)-tzdh
+							}
+						if(tztop > 0){
+							tztop = 0;
+							}
+						$(".guahao_box_r_gg ul").stop(true,false).animate({top : tztop},300);
+					}
+	
+	
+	
+	
+	var	tzkd = $(".guahao_box_r_lun").width(),
+		tzlis = $(".guahao_box_r_lun_da li").length,
+		tzulkd = tzkd * tzlis,
+		tzind = 0,
+		picT2mertz;
+	$(".guahao_box_r_lun_da").width(tzulkd)
+	$(".guahao_box_r_lun_small li").mouseover(function(){
+					tzind = $(this).index();
+					showtz(tzind);	
+				}).eq(0).trigger("mouseover");
+
+				$('.guahao_box_r_lun').hover(function(){
+					clearInterval(picT2mertz);
+				},function(){
+					picT2mertz = setInterval(function() {
+					showtz(tzind);
+					tzind++;
+					if (tzind == tzlis) {
+						tzind = 0;
+						}
+					},5000);
+				}).trigger("mouseleave");
+
+				function showtz(tzind){
+					var lenutz = -tzkd * tzind;
+					$(".guahao_box_r_lun_da").stop(true,false).animate({left : lenutz},300);
+					$(".guahao_box_r_lun_small li").removeClass("on").eq(tzind).addClass("on");
+				}
+	/****预约检查*****/
+	var	tzkds = $(".hospitalized_box_l_lun").width(),
+		tzliss = $(".hospitalized_box_l_lun_da li").length,
+		tzulkds = tzkds * tzliss,
+		tzinds = 0,
+		picT2mertzs;
+	$(".hospitalized_box_l_lun_da").width(tzulkds)
+	$(".hospitalized_box_l_lun_small li").mouseover(function(){
+					tzinds = $(this).index();
+					showtzs(tzinds);	
+				}).eq(0).trigger("mouseover");
+
+				$('.hospitalized_box_l_lun').hover(function(){
+					clearInterval(picT2mertzs);
+				},function(){
+					picT2mertzs = setInterval(function() {
+					showtzs(tzinds);
+					tzinds++;
+					if (tzinds == tzliss) {
+						tzinds = 0;
+						}
+					},5000);
+				}).trigger("mouseleave");
+
+				function showtzs(tzinds){
+					var lenutzs = -tzkds * tzinds;
+					$(".hospitalized_box_l_lun_da").stop(true,false).animate({left : lenutzs},300);
+					$(".hospitalized_box_l_lun_small li").removeClass("on").eq(tzinds).addClass("on");
+				}
+				
+	$(".check_box_l_tab span").click(function(){
+		var kdindex = $(this).index();
+		$(this).addClass("on").siblings().removeClass("on")
+		$(this).parent().siblings("form").eq(kdindex).show().siblings("form").hide();
+		$(".check_box_r h2").eq(kdindex).show().siblings("h2").hide();
+		$(".check_box_r img").eq(kdindex).show().siblings("img").hide();
+		if(kdindex >= 1){
+			$(".check_box_l b").hide();
+			$(".check_box_l p").hide();
+			$(".check_box_l_tab i").show();
+			}else{
+				$(".check_box_l b").show();
+				$(".check_box_l p").show();
+				$(".check_box_l_tab i").hide();
+				}
+		})
+	//正面与背面切换
+        $(".btn_zm").click(function () {
+            if (!$(this).hasClass("btn_on")) {
+                $(".btn_bm").removeClass("btn_on");
+                $(this).addClass("btn_on");
+                $(".znfz_bm").hide();
+                $(".znfz_zm").show();
+                $(".znfz_zm").removeClass().addClass("znfz_zm");
+            }
+        });
+        $(".btn_bm").click(function () {
+            if (!$(this).hasClass("btn_on")) {
+                $(".btn_zm").removeClass("btn_on");
+                $(this).addClass("btn_on");
+                $(".znfz_zm").hide();
+                $(".znfz_bm").show();
+                $(".znfz_bm").removeClass().addClass("znfz_bm");
+            }
+        });
+
+        $(".znfz_zm area").hover(function () {
+            var $aThis = "zm_bg" + ($(this).index() + 1);
+            $(".znfz_zm").removeClass().addClass("znfz_zm " + $aThis);
+            return false;
+        });
+
+        $(".znfz_bm area").hover(function () {
+            var $aThis = "bm_bg" + ($(this).index() + 1);
+            $(".znfz_bm").removeClass().addClass("znfz_bm " + $aThis);
+            return false;
+        });
+	/****医生主页****/
+	$(".doctor_page_content_l table td a").hover(function(){
+		$(this).next().show();
+		},function(){
+			$(this).next().hide();
+			})
+	$(".tc i").click(function(){
+		$(".tc").hide();
+		$(".ztc").hide();
+		})
+	$(".doctor_page_content_l table td a").click(function(){
+		$(".ztc").show();
+		$(".qr").show();
+		$(".qr a").click(function(){
+			$(".qr").hide();
+			$(".qlk").show();
+			$(".qlk a").click(function(){
+				$(".qlk").hide();
+				$(".yyz").show();
+				})
+			})
+		})
+	$(".wcyy a.disa").click(function(){
+		$(".wcyy").hide();
+		$(".ztc").hide();
+		})
+	$(".yysb a,.qbycf a").click(function(){
+		$(".tc").hide();
+		$(".ztc").hide();
+		})
+	$("li.zy").click(function(){
+		$(".guide_box_nav").hide();
+		$(".traffic_box").show();
+		})
+	$("li.dh").click(function(){
+		$(".guide_box_nav").hide();
+		$(".hospital_box").show();
+		})
+	$(".traffic_box i, .hospital_box i").click(function(){
+		$(this).parent().hide();
+		$(".guide_box_nav").show();
+		})
+	$(".hospital_box_list_l li").click(function(){
+		$(this).addClass("on").siblings().removeClass("on")
+		var dtindex = $(this).index();
+		$(".hospital_box_list_r").eq(dtindex).show().siblings(".hospital_box_list_r").hide()
+		})
+	$(".wx").hover(function(){
+		$(this).find("div").show();
+		},function(){
+		$(this).find("div").hide();
+			})	
+	$(".yfc .wx").hover(function(){
+		$(this).find("div").show();
+		},function(){
+		$(this).find("div").hide();
+			})
+	$(".yfc li.bt").click(function(){
+		$("html,body").animate({scrollTop:0}, 500);
+		})
+	/**************************领导班子收起展开****************************/
+	$.show_more_init();
+	
+	})
+	
+
+var cur_status = "less"; 
+$.extend({ 
+show_more_init:function(){ 
+//alert("show_more_init!"); 
+$(".box_right_lead li").each(function(){
+	var charNumbers=$(this).find("p").html().length;//总字数 
+	var limit=90;//显示字数 
+	if(charNumbers>limit) { 
+	var orgText=$(this).find("p").html();//原始文本 
+	var orgHeight=$(this).find("p").height();//原始高度 
+	var showText=orgText.substring(0,limit);//最终显示的文本 
+	$(this).find("p").html(showText+"..."); 
+	var contentHeight=$(this).find("p").height();//截取内容后的高度 
+	$(this).find("i").click(function() { 
+		if($(this).html()=="展开"){ 
+		$(this).siblings("p").height(contentHeight).html(orgText).animate({ height:orgHeight}, { duration: "slow" }); 
+		$(this).html("收起"); 
+		cur_status = "more"; 
+	}else{ 
+		$(this).siblings("p").height(orgHeight).html(showText+"...").animate({ height:contentHeight}, { duration: "fast" });
+		$(this).html("展开"); 
+		cur_status = "less"; 
+			} 
+		} 
+	); 
+	}else { 
+	$(".switch").hide(); 
+		}
+	})
+
+
+ 
+	} 
+}); 
